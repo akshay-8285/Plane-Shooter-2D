@@ -6,6 +6,7 @@ public class CoinScript : MonoBehaviour
 {
     
     [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text coinCollect;
     int coinCount = 0;
     void Start()
     {
@@ -23,6 +24,7 @@ public class CoinScript : MonoBehaviour
     {
         coinCount++;
         coinText.text = coinCount.ToString();
+        coinCollect.text = "COINS :" + coinCount.ToString();
 
     }
 

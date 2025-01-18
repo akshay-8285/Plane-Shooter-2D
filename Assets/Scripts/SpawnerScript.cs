@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
+    [SerializeField] private UiManager uiManager;
     [SerializeField] private GameObject [] enemyPrefab;
+    [SerializeField] private int enemyspawn = 5;
+    [SerializeField] private float eneSpawnTime;
+    private bool lastEnemySpawn = false;
     void Start()
     {
         StartCoroutine(SpawnEnemy());
@@ -13,18 +17,27 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(lastEnemySpawn&& FindAnyObjectByType<EnemyController>()==null)
+        {
+            StartCoroutine(uiManager.LevelComplete());
+        }
         
     }
     public IEnumerator SpawnEnemy()
     {
-        while (true)
+        
+        for(int i = 0; i < enemyspawn; i++)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(eneSpawnTime);
             int randomDiretion = Random.Range(-2, 2);
             int randomIndex = Random.Range(0, enemyPrefab.Length);
             Instantiate(enemyPrefab[randomIndex], new Vector2(randomDiretion, transform.position.y), Quaternion.identity);
             Debug.Log("Enemy Spawned");
+
         }
+        lastEnemySpawn = true;
+            
+        
         
     }
 }

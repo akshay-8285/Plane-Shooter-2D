@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CoinScript coinScript;
     [SerializeField] private UiManager uiManager;
-    [SerializeField] private float speed = 0.2f;
+    [SerializeField] private float speed = 10f;
     [SerializeField] private PlayerHealthBar playerHealthBar;
     [SerializeField] private GameObject particle;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip destroyExplosenclip;
+    [SerializeField] private AudioClip coinSound;
     
     private float minX, maxX;
     private float minY, maxY;
@@ -30,13 +34,17 @@ public class PlayerController : MonoBehaviour
    
     void Update()
     {
-        float horizontal= Input.GetAxis("Horizontal")* Time.deltaTime * speed;
-        float veritcal = Input.GetAxis("Vertical")* Time.deltaTime * speed;
-        float newposX = Mathf.Clamp(transform.position.x + horizontal,minX,maxX);
-        float newposY = Mathf.Clamp(transform.position.y + veritcal,minY,maxY);   
-        transform.position = new Vector2(newposX , newposY );
+        // float horizontal= Input.GetAxis("Horizontal")* Time.deltaTime * speed;
+        // float veritcal = Input.GetAxis("Vertical")* Time.deltaTime * speed;
+        // float newposX = Mathf.Clamp(transform.position.x + horizontal,minX,maxX);
+        // float newposY = Mathf.Clamp(transform.position.y + veritcal,minY,maxY);   
+        // transform.position = new Vector2(newposX , newposY );
 
-        
+        if(Input.GetMouseButton(0))
+        {
+            Vector2 newPose = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Input.mousePosition.y));
+            transform.position = Vector2.Lerp(transform.position, newPose,speed * Time.deltaTime);
+        }
            
         
     }
@@ -55,14 +63,18 @@ public class PlayerController : MonoBehaviour
     {
         if(coll.gameObject.CompareTag("EnemyBullet"))
         {
+
             PlayerTakeDamage();
+            audioSource.PlayOneShot(damageSound,0.5f);
             Destroy(coll.gameObject);
             if(health <= 0)
             {
+                AudioSource.PlayClipAtPoint(destroyExplosenclip,Camera.main.transform.position,0.5f);
                 Destroy(gameObject);
                 GameObject playerExplosen = Instantiate(particle, transform.position, Quaternion.identity);
                 Destroy(playerExplosen, 2f);
-                StartCoroutine(uiManager.GameOver());
+                uiManager. GameOver();
+                
 
             }
             
@@ -70,6 +82,7 @@ public class PlayerController : MonoBehaviour
         }
         if(coll.gameObject.tag == "Coin")
         {
+            audioSource.PlayOneShot(coinSound);
             Destroy(coll.gameObject);
             coinScript.CoinCount();
             
@@ -82,6 +95,7 @@ public class PlayerController : MonoBehaviour
             health -= 1f;
             fillAmount = fillAmount - damage;
             playerHealthBar.SetAmount(fillAmount);
+            
 
             
         }

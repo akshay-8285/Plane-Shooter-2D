@@ -4,8 +4,10 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] private GameObject playerbullet;
+    [SerializeField] private float fireRate;
     [SerializeField] private GameObject muzzleLeFlash;
     [SerializeField] private Transform [] playerGunPoint;
+    [SerializeField] private AudioSource audioSource;
     void Start()
     {
         muzzleLeFlash.SetActive(false);
@@ -26,8 +28,9 @@ public class Shooting : MonoBehaviour
        
         while (true)
         {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(fireRate);
             PlayerShooting();
+            audioSource.Play();
             muzzleLeFlash.SetActive(true);
             yield return new WaitForSeconds(0.04f);
             muzzleLeFlash.SetActive(false);
