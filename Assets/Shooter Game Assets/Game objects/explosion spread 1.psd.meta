@@ -1122,7 +1122,47 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      explosion spread 1_0: -5619474455002479632
+      explosion spread 1_1: -4663309536817450845
+      explosion spread 1_10: -5673173972812414804
+      explosion spread 1_11: -2183834683023169829
+      explosion spread 1_12: -4297382410578532609
+      explosion spread 1_13: -9212595831687057188
+      explosion spread 1_14: 7226515558869635374
+      explosion spread 1_15: 8633692543930515047
+      explosion spread 1_16: -1339622153201653108
+      explosion spread 1_17: 1582888111622348198
+      explosion spread 1_18: -2923526044025963848
+      explosion spread 1_19: -7251013685701445070
+      explosion spread 1_2: 7854786002535510648
+      explosion spread 1_20: -4892521356901435799
+      explosion spread 1_21: -1531424670356002716
+      explosion spread 1_22: 5115019988601816732
+      explosion spread 1_23: 7507630177685870670
+      explosion spread 1_24: 8025497200069676324
+      explosion spread 1_25: -5485132621511183369
+      explosion spread 1_26: -2488208538374024704
+      explosion spread 1_27: -7126643350505151148
+      explosion spread 1_28: 8966025414632110132
+      explosion spread 1_29: -1388508047347205338
+      explosion spread 1_3: 1323771997729828977
+      explosion spread 1_30: -8627007998141847500
+      explosion spread 1_31: 1905938078780131032
+      explosion spread 1_32: 2417888017178599238
+      explosion spread 1_33: -5894152589123975854
+      explosion spread 1_34: 917049643943572801
+      explosion spread 1_35: 7368899099750868409
+      explosion spread 1_36: -1524468464873078651
+      explosion spread 1_37: 2219382023697485179
+      explosion spread 1_38: -5430362685648083165
+      explosion spread 1_39: -5650633735603717634
+      explosion spread 1_4: 5667323209145602009
+      explosion spread 1_5: 5533351896262369165
+      explosion spread 1_6: 684560794979073301
+      explosion spread 1_7: 6105283149609877161
+      explosion spread 1_8: 8740553764025916507
+      explosion spread 1_9: -6259574213177579462
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
