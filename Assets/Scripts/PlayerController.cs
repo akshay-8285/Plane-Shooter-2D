@@ -1,12 +1,17 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CoinScript coinScript;
+    [SerializeField] private UiManager uiManager;
     [SerializeField] private float speed = 0.2f;
     [SerializeField] private PlayerHealthBar playerHealthBar;
     [SerializeField] private GameObject particle;
+    [SerializeField] private GameObject gameOverPanel;
     
     private float minX, maxX;
     private float minY, maxY;
@@ -17,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameOverPanel.SetActive(false);
         damage = fillAmount / health;
         FindBoudaries();
     }
@@ -56,6 +62,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(gameObject);
                 GameObject playerExplosen = Instantiate(particle, transform.position, Quaternion.identity);
                 Destroy(playerExplosen, 2f);
+                StartCoroutine(uiManager.GameOver());
 
             }
             
@@ -81,5 +88,6 @@ public class PlayerController : MonoBehaviour
         
 
     }
+    
 
 }
