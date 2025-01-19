@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8176244200367912930}
   m_Layer: 0
   m_Name: GreemAircraft
-  m_TagString: Untagged
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,12 +389,12 @@ MonoBehaviour:
   fireRate: 1
   muzzleFlash: {fileID: 941471529111802868}
   speed: 1
-  explosenPrefab: {fileID: 8837710865830985424, guid: 968391cd17df9f5419c41055949f5744, type: 3}
+  explosenPrefab: {fileID: 3406222030352653749, guid: 1eb9704975b0b944bbc61c01c38c640d, type: 3}
   damageSparkel: {fileID: 4829468967759862865, guid: 5f41e7d3a23f602408a68f8cef2ed8ee, type: 3}
   coin: {fileID: 8855910503211126573, guid: 229c88cf47dc8194ba68064bf41a9d43, type: 3}
   audioSource: {fileID: 8176244200367912930}
-  bulletSound: {fileID: 8300000, guid: 1950609dc53e2c7478858de1f0cf8665, type: 3}
-  damageSound: {fileID: 8300000, guid: d538244d41b9a07409ad4392456428ff, type: 3}
+  bulletSound: {fileID: 8300000, guid: fb0326a5149a819468a11e647e63bbd5, type: 3}
+  damageSound: {fileID: 8300000, guid: a786b25a4e224084293962eb05942d80, type: 3}
   explosenSound: {fileID: 8300000, guid: a4cd67059190796489be9abc522f4222, type: 3}
 --- !u!82 &8176244200367912930
 AudioSource:
@@ -409,7 +409,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.292
   m_Pitch: 1
   Loop: 0
   Mute: 0

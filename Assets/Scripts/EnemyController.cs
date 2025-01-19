@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < gunPoint.Length; i++)
         {
             Instantiate(enemyBullet, gunPoint[i].position, Quaternion.identity);
-            audioSource.PlayOneShot(bulletSound,0.5f);                 
+            audioSource.PlayOneShot(bulletSound,0.2f);                 
         }
     }
     public void OnTriggerEnter2D(Collider2D collision)
@@ -60,14 +60,14 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             TakeDamage();
-            audioSource.PlayOneShot(damageSound);
+            audioSource.PlayOneShot(damageSound,0.6f);
             Destroy(collision.gameObject); // Destrtoy kiya player bullet ko jo enemy ke sath collide hua 
             GameObject sparkel = Instantiate(damageSparkel, collision.transform.position, Quaternion.identity);
             Destroy(sparkel, 0.5f);
              // sparkel effect ko instantiate kiya
             if(health <= 0)
             {
-                AudioSource.PlayClipAtPoint(explosenSound,Camera.main.transform.position,0.5f);
+                AudioSource.PlayClipAtPoint(explosenSound,Camera.main.transform.position,1f);
                 Destroy(gameObject);
                 GameObject enemyExplosen =Instantiate(explosenPrefab, transform.position, Quaternion.identity);
                 Instantiate(coin, transform.position, Quaternion.identity);

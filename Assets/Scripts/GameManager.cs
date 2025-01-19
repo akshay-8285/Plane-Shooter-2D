@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public void OnClickStartButton()
     {
         SceneManager.LoadScene(1);
+        
     }
     public void OnClickExitButton()
     {
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     public void OnClickNextButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        
+
+
     }
     
 }

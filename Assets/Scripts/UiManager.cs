@@ -12,6 +12,9 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject levelCompletePanel;
     [SerializeField] private Button pauseButton,resumeButton,exitButton ,tryAgainButton;
     [SerializeField] private TMP_Text endText;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip levelCompleteSound;
+    private bool gameover = false;
     void Start()
     {
         Time.timeScale = 1f;
@@ -37,7 +40,7 @@ public class UiManager : MonoBehaviour
     }
     public  void  GameOver()
     {
-        
+        gameover = true;
         gameOverPanel.SetActive(true);
         pauseButton.gameObject.SetActive(false);
     }
@@ -72,11 +75,16 @@ public class UiManager : MonoBehaviour
     }
     public IEnumerator LevelComplete()
     {
+        if(gameover)
+        {
+            yield break;
+        }
         yield return new WaitForSeconds(2f);
         endText.gameObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         Time.timeScale = 0;
         levelCompletePanel.SetActive(true); 
+        audioSource.PlayOneShot(levelCompleteSound,0.4f);
         pauseButton.gameObject.SetActive(false);
         
     }

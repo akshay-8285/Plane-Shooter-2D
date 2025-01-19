@@ -7,6 +7,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CoinScript coinScript;
+    [SerializeField] private PowerUpScript powerUpScript;
     [SerializeField] private UiManager uiManager;
     [SerializeField] private float speed = 10f;
     [SerializeField] private PlayerHealthBar playerHealthBar;
@@ -15,7 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip destroyExplosenclip;
-    [SerializeField] private AudioClip coinSound;
+    [SerializeField] private AudioClip coinSound , powerUpSound;
+    [SerializeField] private GameObject damageEffect;
     
     private float minX, maxX;
     private float minY, maxY;
@@ -69,7 +71,9 @@ public class PlayerController : MonoBehaviour
             Destroy(coll.gameObject);
             if(health <= 0)
             {
-                AudioSource.PlayClipAtPoint(destroyExplosenclip,Camera.main.transform.position,0.5f);
+                GameObject damageEffectObj = Instantiate(damageEffect, coll.transform.position, Quaternion.identity);
+                Destroy(damageEffectObj, 2f);
+                AudioSource.PlayClipAtPoint(destroyExplosenclip,Camera.main.transform.position,1f);
                 Destroy(gameObject);
                 GameObject playerExplosen = Instantiate(particle, transform.position, Quaternion.identity);
                 Destroy(playerExplosen, 2f);
@@ -86,6 +90,15 @@ public class PlayerController : MonoBehaviour
             Destroy(coll.gameObject);
             coinScript.CoinCount();
             
+        }
+        if(coll.gameObject.tag == "PowerUp")
+        {
+            audioSource.PlayOneShot(powerUpSound);
+            Destroy(coll.gameObject);
+            StartCoroutine(powerUpScript.spawnPowerUp());
+            playerHealthBar.SetAmount(1f);
+            health = 20f;
+            fillAmount = 1f;
         }
     }
     public void PlayerTakeDamage()

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnerScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField] private int enemyspawn = 5;
     [SerializeField] private float eneSpawnTime;
     private bool lastEnemySpawn = false;
+    private bool gameover = false;
     void Start()
     {
         StartCoroutine(SpawnEnemy());
@@ -17,7 +19,7 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(lastEnemySpawn&& FindAnyObjectByType<EnemyController>()==null)
+        if(!gameover && lastEnemySpawn&& FindAnyObjectByType<EnemyController>()==null)
         {
             StartCoroutine(uiManager.LevelComplete());
         }
@@ -33,11 +35,21 @@ public class SpawnerScript : MonoBehaviour
             int randomIndex = Random.Range(0, enemyPrefab.Length);
             Instantiate(enemyPrefab[randomIndex], new Vector2(randomDiretion, transform.position.y), Quaternion.identity);
             Debug.Log("Enemy Spawned");
+            
+            
 
         }
         lastEnemySpawn = true;
             
         
         
+    }
+    public void OnTriggerEnter2D(Collider2D coll)
+    {
+        if(coll.gameObject.tag == "CheckPoint")
+        {
+            Debug.Log("CheckPoint");
+            StartCoroutine(SpawnEnemy());
+        }
     }
 }
