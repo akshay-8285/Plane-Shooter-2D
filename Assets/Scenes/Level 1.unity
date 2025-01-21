@@ -3182,6 +3182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d98d62e24c44340bc23ffe408f73e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterDbs: {fileID: 11400000, guid: 5f0812765602fda499899a75e07ea64d, type: 2}
+  characterPrefab: {fileID: 975158062}
   coinScript: {fileID: 881391347}
   powerUpScript: {fileID: 23294418}
   uiManager: {fileID: 1632249013}
@@ -3214,6 +3216,7 @@ MonoBehaviour:
   - {fileID: 172537422}
   - {fileID: 401678241}
   audioSource: {fileID: 975158068}
+  bulletSound: {fileID: 8300000, guid: b954401771be3c044b5355c969324ae7, type: 3}
 --- !u!50 &975158066
 Rigidbody2D:
   serializedVersion: 5
@@ -3355,8 +3358,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b954401771be3c044b5355c969324ae7, type: 3}
-  m_Resource: {fileID: 8300000, guid: b954401771be3c044b5355c969324ae7, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -4349,8 +4352,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 130.1}
-  m_SizeDelta: {x: 326.692, y: 80.437}
+  m_AnchoredPosition: {x: -4.163, y: 130.794}
+  m_SizeDelta: {x: 369.702, y: 79.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679309596
 MonoBehaviour:

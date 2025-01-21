@@ -20,4 +20,8 @@ public class PlayerHealthBar : MonoBehaviour
     {
         playerBar.fillAmount = amount;
     }
+    public void SetColor(Color color)
+    {
+        playerBar.color = color;
+    }
 }

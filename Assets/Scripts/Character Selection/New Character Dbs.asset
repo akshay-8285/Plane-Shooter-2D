@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b95e34b5c015e44bb0c94848bd3009, type: 3}
+  m_Name: New Character Dbs
+  m_EditorClassIdentifier: 
+  characters:
+  - characterName: aircraft
+    characterPrefab: {fileID: -8548970668078385529, guid: cbd3329e3b9e25d49b62ceb851b25220, type: 3}
+  - characterName: Chopper xl
+    characterPrefab: {fileID: 7858021428773278341, guid: d8e6e66e0af79c24dadd846fafefd0ff, type: 3}
+  - characterName: Aircraft green
+    characterPrefab: {fileID: 4181527093735666097, guid: 651a06ce087878e4c82f33b75538c1d5, type: 3}
+  - characterName: Yellow zet
+    characterPrefab: {fileID: -5049230120964155318, guid: c7784d5fd3ae8644d9cc54a2818a3028, type: 3}

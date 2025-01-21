@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject muzzleLeFlash;
     [SerializeField] private Transform [] playerGunPoint;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip bulletSound;
     void Start()
     {
         muzzleLeFlash.SetActive(false);
@@ -30,7 +31,6 @@ public class Shooting : MonoBehaviour
         {
             yield return new WaitForSeconds(fireRate);
             PlayerShooting();
-            audioSource.Play();
             muzzleLeFlash.SetActive(true);
             yield return new WaitForSeconds(0.04f);
             muzzleLeFlash.SetActive(false);
@@ -46,6 +46,7 @@ public class Shooting : MonoBehaviour
         for(int i = 0; i< playerGunPoint.Length; i++)
         {
             Instantiate(playerbullet , playerGunPoint[i].position, Quaternion.identity);
+            audioSource.PlayOneShot(bulletSound,0.2f);
         }
     }
 }

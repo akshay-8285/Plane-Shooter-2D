@@ -6,6 +6,9 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    // public CharacterDbs characterDbs;
+    // public SpriteRenderer characterPrefab;
+    //private int selectedOption = 0;
     [SerializeField] private CoinScript coinScript;
     [SerializeField] private PowerUpScript powerUpScript;
     [SerializeField] private UiManager uiManager;
@@ -25,9 +28,21 @@ public class PlayerController : MonoBehaviour
     private float health = 20f;
     private float damage = 0f;
     private float fillAmount = 1f;
+    private Color green;
+    private Color red;
+    private Color yellow;
 
     void Start()
     {
+        // if(!PlayerPrefs.HasKey("SelectedOption"))
+        // {
+        //     LoadGame();
+        // }
+        // else
+        // {
+        //     selectedOption = 0;
+        // }
+        // UpdateCharacter( selectedOption);
         gameOverPanel.SetActive(false);
         damage = fillAmount / health;
         FindBoudaries();
@@ -67,13 +82,13 @@ public class PlayerController : MonoBehaviour
         {
 
             PlayerTakeDamage();
-            audioSource.PlayOneShot(damageSound,0.5f);
+            audioSource.PlayOneShot(damageSound,0.2f);
             Destroy(coll.gameObject);
             if(health <= 0)
             {
                 GameObject damageEffectObj = Instantiate(damageEffect, coll.transform.position, Quaternion.identity);
                 Destroy(damageEffectObj, 2f);
-                AudioSource.PlayClipAtPoint(destroyExplosenclip,Camera.main.transform.position,1f);
+                AudioSource.PlayClipAtPoint(destroyExplosenclip,Camera.main.transform.position,0.5f);
                 Destroy(gameObject);
                 GameObject playerExplosen = Instantiate(particle, transform.position, Quaternion.identity);
                 Destroy(playerExplosen, 2f);
@@ -86,19 +101,20 @@ public class PlayerController : MonoBehaviour
         }
         if(coll.gameObject.tag == "Coin")
         {
-            audioSource.PlayOneShot(coinSound);
+            audioSource.PlayOneShot(coinSound,1f);
             Destroy(coll.gameObject);
             coinScript.CoinCount();
             
         }
         if(coll.gameObject.tag == "PowerUp")
         {
-            audioSource.PlayOneShot(powerUpSound);
+            audioSource.PlayOneShot(powerUpSound,1f);
             Destroy(coll.gameObject);
             StartCoroutine(powerUpScript.spawnPowerUp());
             playerHealthBar.SetAmount(1f);
             health = 20f;
             fillAmount = 1f;
+            SetColor();
         }
     }
     public void PlayerTakeDamage()
@@ -108,6 +124,7 @@ public class PlayerController : MonoBehaviour
             health -= 1f;
             fillAmount = fillAmount - damage;
             playerHealthBar.SetAmount(fillAmount);
+            SetColor();
             
 
             
@@ -115,6 +132,36 @@ public class PlayerController : MonoBehaviour
         
 
     }
+    public void SetColor()
+    {
+        switch(health)
+        {
+            case 20:
+                green = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+                playerHealthBar.SetColor(green);
+                break;
+            case 10:
+                yellow = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+                playerHealthBar.SetColor(yellow);
+                break;
+            case 5:
+                red = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+                playerHealthBar.SetColor(red);
+                break;
+        }
+    }
+    // public void UpdateCharacter(int selectedOption)
+    // {
+    //     Character character  = characterDbs.GetCharacter(selectedOption);
+    //     characterPrefab.sprite = character.characterPrefab;
+       
+        
+    // }
+    // public void LoadGame()
+    // {
+    //     selectedOption = PlayerPrefs.GetInt("SelectedOption");
+    // }
+
     
 
 }

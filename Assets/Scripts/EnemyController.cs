@@ -60,14 +60,14 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             TakeDamage();
-            audioSource.PlayOneShot(damageSound,0.6f);
+            audioSource.PlayOneShot(damageSound,0.3f);
             Destroy(collision.gameObject); // Destrtoy kiya player bullet ko jo enemy ke sath collide hua 
             GameObject sparkel = Instantiate(damageSparkel, collision.transform.position, Quaternion.identity);
             Destroy(sparkel, 0.5f);
              // sparkel effect ko instantiate kiya
             if(health <= 0)
             {
-                AudioSource.PlayClipAtPoint(explosenSound,Camera.main.transform.position,1f);
+                AudioSource.PlayClipAtPoint(explosenSound,Camera.main.transform.position,0.5f);
                 Destroy(gameObject);
                 GameObject enemyExplosen =Instantiate(explosenPrefab, transform.position, Quaternion.identity);
                 Instantiate(coin, transform.position, Quaternion.identity);
